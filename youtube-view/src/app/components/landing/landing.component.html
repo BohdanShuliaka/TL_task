@@ -1,0 +1,27 @@
+<section class="content-wrapper">
+  <mat-form-field class="input-field">
+    <mat-label>Search channels</mat-label>
+    <input matInput type="text" [(ngModel)]="value">
+  </mat-form-field>
+  <div class="buttons-wrapper">
+    <button class="clear-button" *ngIf="value" mat-raised-button color="primary" (click)="clear()">Clear</button>
+    <button class="search-button" *ngIf="value" mat-raised-button color="primary" (click)="searchByQuery()">Search</button>
+  </div>
+
+</section>
+
+
+<section class="channel-info" *ngIf="channel$ | async as channel"> 
+  <div class="content-wrapper" *ngIf="channel">
+    <div class="description">
+      <h1>Channel: {{ channel.title }}</h1>
+      <p>{{ channel.description }}</p>
+    </div>
+    <div class="image-wrapper">
+      <img class="image" src="{{ channel.img?.url }}" alt="{{ channel.title }}">
+    </div>
+    <div class="total-views">Total views: {{ channel.statistics?.viewCount }}</div>
+    <div class="total-subscribers">Total subscribers: {{ channel.statistics?.viewCount }}</div>
+    <div class="average-views">Average views: {{ channel.avgViews | number: '1.0-0' }}</div>
+  </div>
+</section>
